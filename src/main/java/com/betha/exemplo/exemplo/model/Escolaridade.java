@@ -1,0 +1,12 @@
+package com.betha.exemplo.exemplo.model;
+
+public enum Escolaridade {
+    FUNDAMENTAL_COMPLETO,
+    FUNDAMENTAL_INCOMPLETO,
+    MEDIO_COMPLETO,
+    MEDIO_INCOMPLETO,
+    SUPERIOR_COMPLETO,
+    SUPERIOR_INCOMPLETO,
+    POS_COMPLETO,
+    POS_INCOMPLETO
+}
