@@ -1,2 +1,2 @@
-# BethaCodeProjetoFinalExemploBethaGran
-Exemplo de projeto para os alunos do BethaCode01
+# LocadoraBethaCode
+Exemplo para os alunos do Betha Code
