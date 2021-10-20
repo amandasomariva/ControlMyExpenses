@@ -8,5 +8,6 @@ public enum Cor {
     ROSA,
     BRANCO,
     CINZA,
-    VERDE
+    VERDE,
+    ROXO
 }
