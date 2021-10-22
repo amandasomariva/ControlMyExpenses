@@ -1,0 +1,20 @@
+package com.bethacode.LocadoraVeiculos.repository;
+
+import com.bethacode.LocadoraVeiculos.model.Cliente;
+import com.bethacode.LocadoraVeiculos.model.Investimento;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public interface InvestimentoRepository extends JpaRepository<Investimento, Long> {
+
+    List<Investimento> findBySaldo(Double saldo);
+
+    List<Investimento> findByParcelas(String parcelas);
+
+    List<Investimento> findByValorInvestido(String valorInvestido);
+
+    List<Investimento> findByRendimento(String rendimento);
+}
