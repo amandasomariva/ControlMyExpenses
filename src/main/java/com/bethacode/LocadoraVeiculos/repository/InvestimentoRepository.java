@@ -2,7 +2,6 @@ package com.bethacode.LocadoraVeiculos.repository;
 
 import com.bethacode.LocadoraVeiculos.model.Cliente;
 import com.bethacode.LocadoraVeiculos.model.Investimento;
-import com.bethacode.LocadoraVeiculos.model.Modelo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.stereotype.Repository;
@@ -10,13 +9,13 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ClienteRepository extends JpaRepository<Cliente, Long> , QuerydslPredicateExecutor<Cliente> {
+public interface InvestimentoRepository extends JpaRepository<Investimento, Long> , QuerydslPredicateExecutor<Investimento> {
 
-    List<Cliente> findByNome(String nome);
+    List<Investimento> findBySaldo(Double saldo);
 
-    List<Cliente> findByTipoDocumento(String tipoDocumento);
+    List<Investimento> findByParcelas(String parcelas);
 
-    List<Cliente> findByDocumento(String documento);
+    List<Investimento> findByValorInvestido(String valorInvestido);
 
-    List<Cliente> findByDataNascimento(String dataNascimento);
+    List<Investimento> findByRendimento(String rendimento);
 }
