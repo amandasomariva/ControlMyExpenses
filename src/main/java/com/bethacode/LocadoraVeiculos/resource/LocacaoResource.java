@@ -54,7 +54,7 @@ public class LocacaoResource extends AbstractResource {
     public LocacaoDTO create(@Valid @RequestBody Locacao locacao)  throws ValidationException {
 
 
-        Cliente cliente = clienteRepository.getId(locacao.getCliente().getId());
+        //Cliente cliente = clienteRepository.getId(locacao.getCliente().getId());
         Period period = Period.between(cliente.getDataNascimento(), LocalDate.now());
        if (period.getYears() < 21) {
            throw new ValidationException("Para Alugar o carro, o cliente deve ser maior que 21 anos!");
