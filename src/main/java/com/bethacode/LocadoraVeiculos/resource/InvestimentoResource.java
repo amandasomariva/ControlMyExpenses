@@ -2,16 +2,25 @@ package com.bethacode.LocadoraVeiculos.resource;
 
 import com.bethacode.LocadoraVeiculos.enterprise.EntityNotFoundException;
 import com.bethacode.LocadoraVeiculos.enterprise.ValidationException;
-import com.bethacode.LocadoraVeiculos.model.Cliente;
-import com.bethacode.LocadoraVeiculos.model.Investimento;
+import com.bethacode.LocadoraVeiculos.model.*;
 import com.bethacode.LocadoraVeiculos.repository.ClienteRepository;
 import com.bethacode.LocadoraVeiculos.repository.InvestimentoRepository;
+import com.querydsl.core.types.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import javax.validation.Valid;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -22,8 +31,13 @@ public class InvestimentoResource extends AbstractResource {
     private InvestimentoRepository repository;
 
     @GetMapping
-    public List<InvestimentoDTO> getInvestimento() {
-        return repository.findAll().stream().map(p -> InvestimentoDTO.toDTO(p)).collect(Collectors.toList());
+    public List<LocacaoDTO> getLocacao(@QuerydslPredicate(root = locacao.class) Predicate predicate) {
+        List<LocacaoDTO> result = new ArrayList<>();
+        Iterable<Locacao> all = repository.findAll(predicate);
+        all.forEach(f -> result.add(LocacaoDTO.toDTO(f)));
+        return result;
+   /* public List<LocacaoDTO> getPaises() {
+        return repository.findAll().stream().map(p -> LocacaoDTO.toDTO(p)).collect(Collectors.toList());*/
     }
 
 
@@ -37,18 +51,31 @@ public class InvestimentoResource extends AbstractResource {
     }*/
 
 
-   /* @PostMapping
-    public InvestimentoDTO create(@Valid @RequestBody Investimento investimento)  throws ValidationException {
+    @PostMapping
+    public LocacaoDTO create(@Valid @RequestBody Locacao locacao)  throws ValidationException {
 
-        List<Investimento> byParcela = repository.findBySaldo(investimento.getSaldo());
 
-        if (!byNome.isEmpty()) {
-            throw new ValidationException("Já existe um cliente com o mesmo documento! 2x");
+        Cliente cliente = clienteRepository.getId(locacao.getCliente().getId());
+        Period period = Period.between(cliente.getDataNascimento(), LocalDate.now());
+        if (period.getYears() < 21) {
+            throw new ValidationException("Para Alugar o carro, o cliente deve ser maior que 21 anos!");
         }
 
-        return ClienteDTO.toDTO(repository.save(cliente));
+       /*List<Locacao> locacaos = repository.findByVeiculo(locacao.getVeiculo());
+       List<Locacao> collect = locacaos.stream()
+               .filter(v -> !v.getStatus().equals(StatusLocacao.DEVOLVIDO))
+                       .collect(Collectors.toList());
+               if (!collect.isEmpty()) {
+                   throw new ValidationException("Não é possivel alugar p carro pois o mesmo já esta alugado!");*/
+        Optional<Locacao> one = repository.findOne(QLocacao.locacao.veiculo.eq(locacao.getVeiculo())
+                .and(QLocacao.locacao.status.ne(StatusLocacao.DEVOLVIDO)));
+        if (one.isPresent()) {
+            throw new ValidationException("Não é possivel alugar p carro pois o mesmo já esta alugado!");
+        }
+
+
+        return LocacaoDTO.toDTO(repository.save(locacao));
     }
-*/
 
     @PutMapping("/{id}")
     public InvestimentoDTO update(@PathVariable(value = "saldo") Double investimentoSaldo,
