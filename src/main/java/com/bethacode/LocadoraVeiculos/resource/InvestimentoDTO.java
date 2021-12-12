@@ -1,18 +1,16 @@
 package com.bethacode.LocadoraVeiculos.resource;
 
-import com.bethacode.LocadoraVeiculos.model.Cidade;
-import com.bethacode.LocadoraVeiculos.model.Cliente;
+import com.bethacode.LocadoraVeiculos.model.Investido;
 import com.bethacode.LocadoraVeiculos.model.Investimento;
-import com.bethacode.LocadoraVeiculos.model.TipoDocumento;
 
-import java.time.LocalDate;
+import java.util.List;
 
 public class InvestimentoDTO {
 
     private Double saldo;
     private String parcelas;
-    private Double valorInvestido;
-    private Double rendimento;
+    private Integer rendimento;
+    private List<Investido> investidos;
 
     public Double getSaldo() {
         return saldo;
@@ -30,76 +28,28 @@ public class InvestimentoDTO {
         this.parcelas = parcelas;
     }
 
-    public Double getValorInvestido() {
-        return valorInvestido;
-    }
-
-    public void setValorInvestido(Double valorInvestido) {
-        this.valorInvestido = valorInvestido;
-    }
-
-    public Double getRendimento() {
+    public Integer getRendimento() {
         return rendimento;
     }
 
-    public void setRendimento(Double rendimento) {
+    public void setRendimento(Integer rendimento) {
         this.rendimento = rendimento;
     }
 
-/* public Long getId() {
-        return id;
+    public List<Investido> getInvestidos() {
+        return investidos;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setInvestidos(List<Investido> investidos) {
+        this.investidos = investidos;
     }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public TipoDocumento getTipoDocumento() {
-        return tipoDocumento;
-    }
-
-    public void setTipoDocumento(TipoDocumento tipoDocumento) {
-        this.tipoDocumento = tipoDocumento;
-    }
-
-    public String getDocumento() {
-        return documento;
-    }
-
-    public void setDocumento(String documento) {
-        this.documento = documento;
-    }
-
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(LocalDate dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
-
-    public Cidade getCidade() {
-        return cidade;
-    }
-
-    public void setCidade(Cidade cidade) {
-        this.cidade = cidade;
-    }*/
 
     public static InvestimentoDTO toDTO(Investimento investimento) {
         InvestimentoDTO dto = new InvestimentoDTO();
         dto.setSaldo(investimento.getSaldo());
         dto.setParcelas(investimento.getParcelas());
-        dto.setValorInvestido(investimento.getValorInvestido());
         dto.setRendimento(investimento.getRendimento());
+        dto.setInvestidos(investimento.getInvestidos());
         return dto;
     }
 
@@ -107,10 +57,8 @@ public class InvestimentoDTO {
         Investimento entity = new Investimento();
         entity.setSaldo(dto.getSaldo());
         entity.setParcelas(dto.getParcelas());
-        entity.setValorInvestido(dto.getValorInvestido());
         entity.setRendimento(dto.getRendimento());
-
-
+        entity.setInvestidos(dto.getInvestidos());
         return entity;
     }
 }

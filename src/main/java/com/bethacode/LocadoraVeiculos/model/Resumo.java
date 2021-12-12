@@ -3,29 +3,25 @@ package com.bethacode.LocadoraVeiculos.model;
 import com.bethacode.LocadoraVeiculos.enterprise.AbstractEntity;
 
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.xml.crypto.Data;
+import java.time.LocalDate;
 
 @Entity
 public class Resumo extends AbstractEntity {
     @NotNull
-    private Data dataSaida;
+    private LocalDate dataSaida;
     @NotNull
     private Double valorTotal;
     @NotNull
     private Double saldoTotal;
 
-    @ManyToOne
-    @JoinColumn(name = "i_gastos", referencedColumnName = "ID")
-    private Gastos gastos;
 
-    public Data getDataSaida() {
+    public LocalDate getDataSaida() {
         return dataSaida;
     }
 
-    public void setDataSaida(Data dataSaida) {
+    public void setDataSaida(LocalDate dataSaida) {
         this.dataSaida = dataSaida;
     }
 
@@ -45,11 +41,5 @@ public class Resumo extends AbstractEntity {
         this.saldoTotal = saldoTotal;
     }
 
-    public Gastos getGastos() {
-        return gastos;
-    }
 
-    public void setGastos(Gastos gastos) {
-        this.gastos = gastos;
-    }
 }

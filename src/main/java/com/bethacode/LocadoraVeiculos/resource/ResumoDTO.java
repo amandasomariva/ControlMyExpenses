@@ -4,18 +4,19 @@ import com.bethacode.LocadoraVeiculos.model.Investimento;
 import com.bethacode.LocadoraVeiculos.model.Resumo;
 
 import javax.xml.crypto.Data;
+import java.time.LocalDate;
 
 public class ResumoDTO {
 
-    private Data dataSaida;
+    private LocalDate dataSaida;
     private Double valorTotal;
     private Double saldoTotal;
 
-    public Data getDataSaida() {
+    public LocalDate getDataSaida() {
         return dataSaida;
     }
 
-    public void setDataSaida(Data dataSaida) {
+    public void setDataSaida(LocalDate dataSaida) {
         this.dataSaida = dataSaida;
     }
 
