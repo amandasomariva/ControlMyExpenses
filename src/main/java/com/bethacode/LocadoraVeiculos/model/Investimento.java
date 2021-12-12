@@ -2,11 +2,9 @@ package com.bethacode.LocadoraVeiculos.model;
 
 import com.bethacode.LocadoraVeiculos.enterprise.AbstractEntity;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Investimento extends AbstractEntity {
@@ -15,13 +13,15 @@ public class Investimento extends AbstractEntity {
     @NotNull
     private String parcelas;
     @NotNull
-    private Double valorInvestido;
-    @NotNull
-    private Double rendimento;
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "i_gastos", referencedColumnName = "ID")
-    private Gastos gastos;
+    private Integer rendimento;
+
+    @ManyToMany(cascade = {CascadeType.REFRESH})
+    @JoinTable(
+            name = "investimento_investidos",
+            joinColumns = {@JoinColumn(name = "investimento_id")},
+            inverseJoinColumns = {@JoinColumn(name = "investidos_id")}
+    )
+    private List<Investido> investidos;
 
     public Double getSaldo() {
         return saldo;
@@ -39,27 +39,19 @@ public class Investimento extends AbstractEntity {
         this.parcelas = parcelas;
     }
 
-    public Double getValorInvestido() {
-        return valorInvestido;
-    }
-
-    public void setValorInvestido(Double valorInvestido) {
-        this.valorInvestido = valorInvestido;
-    }
-
-    public Double getRendimento() {
+    public Integer getRendimento() {
         return rendimento;
     }
 
-    public void setRendimento(Double rendimento) {
+    public void setRendimento(Integer rendimento) {
         this.rendimento = rendimento;
     }
 
-    public Gastos getGastos() {
-        return gastos;
+    public List<Investido> getInvestidos() {
+        return investidos;
     }
 
-    public void setGastos(Gastos gastos) {
-        this.gastos = gastos;
+    public void setInvestidos(List<Investido> investidos) {
+        this.investidos = investidos;
     }
 }

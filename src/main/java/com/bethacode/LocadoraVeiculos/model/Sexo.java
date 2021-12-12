@@ -1,7 +1,8 @@
 package com.bethacode.LocadoraVeiculos.model;
 
-public enum TipoDocumento {
+public enum Sexo {
 
-    CPF,
-    CNPJ
+    FEMININO,
+    MASCULINO;
 }
+
