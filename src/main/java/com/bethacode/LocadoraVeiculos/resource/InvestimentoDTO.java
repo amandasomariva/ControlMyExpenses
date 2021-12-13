@@ -7,10 +7,19 @@ import java.util.List;
 
 public class InvestimentoDTO {
 
+    private String id;
     private Double saldo;
-    private String parcelas;
+    private Integer parcelas;
     private Integer rendimento;
     private List<Investido> investidos;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public Double getSaldo() {
         return saldo;
@@ -20,11 +29,11 @@ public class InvestimentoDTO {
         this.saldo = saldo;
     }
 
-    public String getParcelas() {
+    public Integer getParcelas() {
         return parcelas;
     }
 
-    public void setParcelas(String parcelas) {
+    public void setParcelas(Integer parcelas) {
         this.parcelas = parcelas;
     }
 
@@ -44,8 +53,11 @@ public class InvestimentoDTO {
         this.investidos = investidos;
     }
 
+
+
     public static InvestimentoDTO toDTO(Investimento investimento) {
         InvestimentoDTO dto = new InvestimentoDTO();
+        dto.setId(investimento.getId().toString());
         dto.setSaldo(investimento.getSaldo());
         dto.setParcelas(investimento.getParcelas());
         dto.setRendimento(investimento.getRendimento());
@@ -55,6 +67,7 @@ public class InvestimentoDTO {
 
     public static Investimento fromDTO(InvestimentoDTO dto) {
         Investimento entity = new Investimento();
+        entity.setId(Long.getLong(dto.getId()));
         entity.setSaldo(dto.getSaldo());
         entity.setParcelas(dto.getParcelas());
         entity.setRendimento(dto.getRendimento());

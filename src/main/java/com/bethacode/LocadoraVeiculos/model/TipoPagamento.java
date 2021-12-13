@@ -7,6 +7,5 @@ public enum TipoPagamento {
     PIX,
     TRANSFERENCIA,
     DEBITO,
-    CREDITO_AVISTA,
-    CREDITO_PARCELADO,
+    CREDITO;
 }

@@ -9,16 +9,16 @@ import java.time.LocalDate;
 
 public class RendaDTO {
 
-    private Long id;
+    private String id;
     private TipoRenda tipoRenda;
     private LocalDate dataEntrada;
     private Double valor;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -48,7 +48,7 @@ public class RendaDTO {
 
     public static RendaDTO toDTO(Renda renda) {
         RendaDTO dto = new RendaDTO();
-        dto.setId(renda.getId());
+        dto.setId(renda.getId().toString());
         dto.setTipoRenda(renda.getTipoRenda());
         dto.setDataEntrada(renda.getDataEntrada());
         dto.setValor(renda.getValor());
@@ -57,7 +57,7 @@ public class RendaDTO {
 
     public static Renda fromDTO(RendaDTO dto) {
         Renda entity = new Renda();
-        entity.setId(dto.getId());
+        entity.setId(Long.getLong(dto.getId()));
         entity.setTipoRenda(dto.getTipoRenda());
         entity.setDataEntrada(dto.getDataEntrada());
         entity.setValor(dto.getValor());
