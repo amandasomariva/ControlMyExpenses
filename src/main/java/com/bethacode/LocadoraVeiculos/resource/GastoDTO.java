@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 public class GastoDTO {
 
-    private Long id;
+    private String id;
     private String descricaoCompra;
     private Double valorCompra;
     private LocalDate dataCompra;
@@ -19,11 +19,11 @@ public class GastoDTO {
     private TipoDespesa tipoDespesa;
     private boolean pago;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -85,7 +85,7 @@ public class GastoDTO {
 
     public static GastoDTO toDTO(Gasto gasto) {
         GastoDTO dto = new GastoDTO();
-        dto.setId(gasto.getId());
+        dto.setId(gasto.getId().toString());
         dto.setDescricaoCompra(gasto.getDescricaoCompra());
         dto.setValorCompra(gasto.getValorCompra());
         dto.setDataCompra(gasto.getDataCompra());
@@ -98,7 +98,7 @@ public class GastoDTO {
 
     public static Gasto fromDTO(GastoDTO dto) {
         Gasto entity = new Gasto();
-        entity.setId(dto.getId());
+        entity.setId(Long.getLong(dto.getId()));
         entity.setDescricaoCompra(dto.getDescricaoCompra());
         entity.setValorCompra(dto.getValorCompra());
         entity.setDataCompra(dto.getDataCompra());

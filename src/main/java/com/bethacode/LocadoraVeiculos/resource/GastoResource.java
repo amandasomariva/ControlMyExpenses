@@ -69,15 +69,14 @@ public class GastoResource extends AbstractResource {
                 .orElseThrow(() -> new EntityNotFoundException("Gasto não encontrado com ID :: " + gastoId));
         gastoFind.setId(gasto.getId());
         gastoFind.setDescricaoCompra(gasto.getDescricaoCompra());
-        gastoFind.setTipoPagamento(gasto.getTipoPagamento());
-        gastoFind.setTipoDespesa(gasto.getTipoDespesa());
         gastoFind.setDataCompra(gasto.getDataCompra());
         gastoFind.setDataVencimento(gasto.getDataVencimento());
+        gastoFind.setTipoPagamento(gasto.getTipoPagamento());
+        gastoFind.setTipoDespesa(gasto.getTipoDespesa());
         gastoFind.setPago(gasto.isPago());
 
         return GastoDTO.toDTO(repository.save(gastoFind));
     }
-
 
 
     @DeleteMapping("/{id}")

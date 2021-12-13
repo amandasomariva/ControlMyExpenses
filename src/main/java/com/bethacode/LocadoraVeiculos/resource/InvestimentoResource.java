@@ -31,7 +31,7 @@ public class InvestimentoResource extends AbstractResource {
     ;*/
 
     @GetMapping
-    public List<InvestimentoDTO> getInvestido(@QuerydslPredicate(root = Investimento.class) Predicate predicate) {
+    public List<InvestimentoDTO> getInvestimento(@QuerydslPredicate(root = Investimento.class) Predicate predicate) {
         List<InvestimentoDTO> result = new ArrayList<>();
         Iterable<Investimento> all = repository.findAll(predicate);
         all.forEach(f -> result.add(InvestimentoDTO.toDTO(f)));

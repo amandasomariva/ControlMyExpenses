@@ -9,18 +9,18 @@ import java.time.LocalDate;
 
 public class UsuarioDTO {
 
-    private Long id;
+    private String id;
     private String nome;
     private LocalDate dataNascimento;
     private Sexo sexo;
     private String cpf;
     private String email;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -66,7 +66,7 @@ public class UsuarioDTO {
 
     public static UsuarioDTO toDTO(Usuario usuario) {
         UsuarioDTO dto = new UsuarioDTO();
-        dto.setId(usuario.getId());
+        dto.setId(usuario.getId().toString());
         dto.setNome(usuario.getNome());
         dto.setDataNascimento(usuario.getDataNascimento());
         dto.setSexo(usuario.getSexo());
@@ -77,7 +77,7 @@ public class UsuarioDTO {
 
     public static Usuario fromDTO(UsuarioDTO dto) {
         Usuario entity = new Usuario();
-        entity.setId(dto.getId());
+        entity.setId(Long.getLong(dto.getId()));
         entity.setNome(dto.getNome());
         entity.setDataNascimento(dto.getDataNascimento());
         entity.setSexo(dto.getSexo());

@@ -11,7 +11,7 @@ public class Investimento extends AbstractEntity {
     @NotNull
     private Double saldo;
     @NotNull
-    private String parcelas;
+    private Integer parcelas;
     @NotNull
     private Integer rendimento;
 
@@ -31,11 +31,11 @@ public class Investimento extends AbstractEntity {
         this.saldo = saldo;
     }
 
-    public String getParcelas() {
+    public Integer getParcelas() {
         return parcelas;
     }
 
-    public void setParcelas(String parcelas) {
+    public void setParcelas(Integer parcelas) {
         this.parcelas = parcelas;
     }
 
