@@ -8,9 +8,9 @@ import java.time.LocalDate;
 
 @Entity
 public class Investido extends AbstractEntity {
-    @NotNull
+
     private Double valorInvestido;
-    @NotNull
+
     private LocalDate dataInvestido;
 
     public Double getValorInvestido() {
